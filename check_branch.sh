@@ -11,12 +11,14 @@ local_branch="$(git rev-parse --abbrev-ref HEAD)"
 valid_release_branch="^(main)|(master)"
 message="Your branch must follow the pattern $valid_dev_branch, (i.e., $example)."
 
+matchString=`echo $local_branch | grep -Eo "$valid_dev_branch"`
+
 if [[ $local_branch =~ $valid_release_branch ]]
 then
     exit 0
 fi
 
-if [[ ! $local_branch =~ $valid_dev_branch ]]
+if [[ -z matchString ]]
 then
     echo "$message"
     exit 1
