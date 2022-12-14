@@ -4,23 +4,29 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-valid_dev_branch=$1
+check_regex=$1
 example=$2
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 valid_release_branch="^(main)|(master)"
-message="Your branch must follow the pattern $valid_dev_branch, (i.e., $example)."
 
-matchString=`echo $local_branch | grep -Eo "$valid_dev_branch"`
+# this is to make sure the example is sensible
+if [[ ! $example =~ $check_regex ]]
+then
+    echo "Your example doesn't match the provided regex. Configure args correctly."
+    exit 1
+fi
 
 if [[ $local_branch =~ $valid_release_branch ]]
 then
     exit 0
 fi
 
-if [[ -z matchString ]]
+matchCount=`echo $local_branch | grep -Ec "$check_regex"`
+
+if [[ matchCount -ne 1 ]]
 then
-    echo "$message"
+    echo "Your branch must follow the pattern $check_regex, (i.e., $example)."
     exit 1
 fi
 

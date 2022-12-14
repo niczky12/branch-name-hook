@@ -4,4 +4,8 @@
   language: "script"
   pass_filenames: false
   description: "Make sure branch name matches a certain pattern"
-  args: ["^([a-z]{3})-([A-Z0-9]+\\-\\d+)-([a-zA-Z0-9\\-]+)$", "abc-PROJ-123-feature-branch-example-1"]
+  args:
+    [
+      "^[a-z]{3}-[A-Z]+-[0-9]+-[a-zA-Z0-9\\-]+$",
+      "abc-PROJ-123-feature-branch-example-1",
+    ]
