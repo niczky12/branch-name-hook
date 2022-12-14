@@ -4,7 +4,7 @@ echo "The hook is running"
 echo "$@"
 
 
-local_branch="$(git rev-parse --abbrev-ref HEAD)"
+local_branch="$((git rev-parse --abbrev-ref HEAD) | tr -d '\n')"
 
 valid_release_branch="^(main)|(master)$"
 valid_dev_branch="^(?:[a-z]{3})-([A-Z0-9]+\-\d+)-([a-zA-Z0-9\-]+)$"
