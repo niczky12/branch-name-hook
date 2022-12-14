@@ -1,7 +1,7 @@
 - id: "test-hook"
   name: "Test Hook"
   entry: run-test-hook.sh
-  types: []
   language: "script"
+  pass_filenames: false
   description: "This is an example hook to demonstrate how to create a pre-commit hook"
   args: [--example1, --example2]
