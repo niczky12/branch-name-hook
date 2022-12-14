@@ -3,5 +3,5 @@
   entry: check_branch.sh
   language: "script"
   pass_filenames: false
-  description: "This is an example hook to demonstrate how to create a pre-commit hook"
+  description: "Make sure branch name matches a certain pattern"
   args: ["^(?:[a-z]{3})-([A-Z0-9]+\\-\\d+)-([a-zA-Z0-9\\-]+)$", "abc-PROJ-123-feature-branch-example-1"]
